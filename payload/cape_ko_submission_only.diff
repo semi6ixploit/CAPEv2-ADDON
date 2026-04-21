@@ -1,0 +1,191 @@
+diff --git a/web/templates/submission/index.html b/web/templates/submission/index.html
+index e8499ec..a719834 100644
+--- a/web/templates/submission/index.html
++++ b/web/templates/submission/index.html
+@@ -3,7 +3,7 @@
+ <div class="row justify-content-center">
+     <div class="col-lg-8">
+         <div class="card bg-dark shadow-sm border-secondary">
+             <div class="card-header border-secondary bg-transparent">
+-                <h4 class="mb-0 text-white"><i class="fas fa-upload me-2 text-primary"></i>Submit for Analysis</h4>
++                <h4 class="mb-0 text-white"><i class="fas fa-upload me-2 text-primary"></i>분석 제출</h4>
+             </div>
+             <div class="card-body">
+                 <form role="form" action="" method="post" enctype="multipart/form-data">
+@@ -13,7 +13,7 @@
+                         {% if resubmit %}
+                         <li class="nav-item">
+                             <a class="nav-link active" id="resubmit-tab" data-bs-toggle="pill" href="#resubmit"
+                                 role="tab" aria-controls="resubmit" aria-selected="true">
+-                                <i class="fas fa-sync-alt me-2"></i>Resubmission
++                                <i class="fas fa-sync-alt me-2"></i>재제출
+                             </a>
+                         </li>
+                         {% else %}
+@@ -21,7 +21,7 @@
+                         <li class="nav-item">
+                             <a class="nav-link active" id="file-tab" data-bs-toggle="pill" href="#file" role="tab"
+                                 aria-controls="file" aria-selected="true">
+-                                <i class="fas fa-file me-2"></i>File(s)
++                                <i class="fas fa-file me-2"></i>파일
+                             </a>
+                         </li>
+                         {% if config.downloading_service %}
+@@ -29,7 +29,7 @@
+                             <a class="nav-link" id="dl-service-tab" data-bs-toggle="pill" href="#downloading_service"
+                                 role="tab" aria-controls="downloading_service" aria-selected="false">
+-                                <i class="fas fa-cloud-download-alt me-2"></i>Download
++                                <i class="fas fa-cloud-download-alt me-2"></i>다운로드
+                             </a>
+                         </li>
+                         {% endif %}
+@@ -44,19 +44,19 @@
+                         {% if config.dlnexec %}
+                         <li class="nav-item">
+                             <a class="nav-link" id="dlnexec-tab" data-bs-toggle="pill" href="#dlurl" role="tab"
+                                 aria-controls="dlurl" aria-selected="false">
+-                                <i class="fas fa-bolt me-2"></i>DL & Exec
++                                <i class="fas fa-bolt me-2"></i>다운로드 후 실행
+                             </a>
+                         </li>
+                         {% endif %}
+                         <li class="nav-item">
+                             <a class="nav-link" id="pcap-tab" data-bs-toggle="pill" href="#pcap" role="tab"
+                                 aria-controls="pcap" aria-selected="false">
+                                 <i class="fas fa-network-wired me-2"></i>PCAP
+                             </a>
+                         </li>
+                         <li class="nav-item">
+                             <a class="nav-link" id="static-tab" data-bs-toggle="pill" href="#static" role="tab"
+                                 aria-controls="static" aria-selected="false">
+-                                <i class="fas fa-code me-2"></i>Static
++                                <i class="fas fa-code me-2"></i>정적 분석
+                             </a>
+                         </li>
+                         {% endif %}
+@@ -122,7 +122,7 @@
+                     <div class="card border-secondary mb-3">
+                         <div class="card-header border-secondary bg-transparent">
+-                            <h5 class="mb-0 text-white"><i class="fas fa-cogs me-2 text-primary"></i>Advanced Options
++                            <h5 class="mb-0 text-white"><i class="fas fa-cogs me-2 text-primary"></i>고급 옵션
+                             </h5>
+                         </div>
+                         <div class="card-body">
+@@ -133,7 +133,7 @@
+                                 <div class="mb-3">
+                                     <button class="btn btn-sm btn-outline-info" type="button" data-bs-toggle="collapse"
+                                         data-bs-target="#existent_tasks">
+-                                        Show existent tasks
++                                        기존 작업 보기
+                                     </button>
+                                     <div id="existent_tasks" class="collapse mt-2">
+                                         {% for sha256, details in existent_tasks.items %}
+@@ -165,7 +165,7 @@
+                                 {% endif %}
+ 
+                                 <div class="mb-3">
+-                                    <label for="form_package" class="text-white-50">Analysis Package</label>
++                                    <label for="form_package" class="text-white-50">분석 패키지</label>
+                                     <select class="form-select border-secondary" id="form_package"
+                                         name="package">
+                                         <option value="" title="">Detect Automatically</option>
+@@ -177,7 +177,7 @@
+ 
+                                 {% if not config.dist_master_storage_only %}
+                                 <div class="mb-3">
+-                                    <label for="form_machine" class="text-white-50">Machine</label>
++                                    <label for="form_machine" class="text-white-50">분석 머신</label>
+                                     <select class="form-select border-secondary" id="form_machine"
+                                         name="machine">
+                                         {% for id,label in machines %}
+@@ -189,7 +189,7 @@
+ 
+                                 {% if config.tags and tags %}
+                                 <div class="mb-3">
+-                                    <label for="form_tags" class="text-white-50">Machine Tags</label>
++                                    <label for="form_tags" class="text-white-50">머신 태그</label>
+                                     <div class="input-group">
+                                         <input type="text" class="form-control border-secondary"
+                                             id="form_tags" name="tags" placeholder="tag1,tag2" />
+@@ -207,7 +207,7 @@
+                                 </div>
+ 
+                                 <div class="mb-3">
+-                                    <label for="form_route" class="text-white-50">Network Routing</label>
++                                    <label for="form_route" class="text-white-50">네트워크 라우팅</label>
+                                     <select class="form-select border-secondary" id="form_route"
+                                         name="route">
+                                         {% if internet != "none" %}
+@@ -242,13 +242,13 @@
+                                     </select>
+                                 </div>
+                                 <div class="mb-3">
+-                                    <label for="form_timeout" class="text-white-50">Timeout (seconds)</label>
++                                    <label for="form_timeout" class="text-white-50">타임아웃 (초)</label>
+                                     <input type="number" class="form-control border-secondary"
+                                         id="form_timeout" name="timeout" value="{{config.timeout}}" />
+                                 </div>
+@@ -362,7 +362,7 @@
+                                 <!-- Options Field -->
+                                 <div class="mb-3">
+-                                    <label for="form_options" class="text-white-50">Options</label>
++                                    <label for="form_options" class="text-white-50">옵션</label>
+                                     <div class="input-group">
+                                         <input type="text" class="form-control border-secondary"
+                                                id="form_options" name="options" placeholder="option1=val1,option2=val2" />
+@@ -557,14 +557,14 @@
+                             <div class="row g-3">
+                                 <div class="col-md-6">
+-                                    <label for="form_priority" class="text-white-50">Priority</label>
++                                    <label for="form_priority" class="text-white-50">우선순위</label>
+                                     <select class="form-select border-secondary" id="form_priority"
+                                         name="priority">
+-                                        <option value="1">Low</option>
+-                                        <option value="2" selected>Medium</option>
+-                                        <option value="3">High</option>
++                                        <option value="1">낮음</option>
++                                        <option value="2" selected>보통</option>
++                                        <option value="3">높음</option>
+                                     </select>
+                                 </div>
+                                 {% if config.tlp %}
+@@ -579,12 +579,12 @@
+                             <div id="non-pcap-2">
+                                     <div class="row g-3 mt-1">
+                                         <div class="col-md-6">
+-                                            <label for="clock" class="text-white-50">Clock</label>
++                                            <label for="clock" class="text-white-50">가상 시계</label>
+                                             <input type="text" class="form-control border-secondary"
+                                                    id="clock" name="clock" placeholder="MM-DD-YYYY HH:mm:00" />
+                                         </div>
+                                         <div class="col-md-6">
+-                                            <label for="form_tags_tasks" class="text-white-50">Task Tags</label>
++                                            <label for="form_tags_tasks" class="text-white-50">작업 태그</label>
+                                             <input type="text" class="form-control border-secondary"
+                                                    id="form_tags_tasks" name="tags_tasks" />
+                                         </div>
+@@ -605,7 +605,7 @@
+                                     {% endif %}
+                                     <div class="mb-3">
+-                                        <label for="form_custom" class="text-white-50">Custom Field</label>
++                                        <label for="form_custom" class="text-white-50">사용자 지정 필드</label>
+                                         <input type="text" class="form-control border-secondary"
+                                                id="form_custom" name="custom" />
+                                     </div>
+@@ -615,7 +615,7 @@
+                                     <div class="mt-3">
+                                         <button class="btn btn-sm btn-outline-warning w-100" type="button"
+                                                 data-bs-toggle="collapse" data-bs-target="#extendedCheckboxes">
+-                                            Toggle Extended Capabilities
++                                            확장 기능 열기/닫기
+                                         </button>
+                                         <div class="collapse mt-3" id="extendedCheckboxes">
+@@ -711,7 +711,7 @@
+ 
+                             <div class="text-center mt-4">
+                                 <button type="submit" class="btn btn-outline-info btn-lg px-5 shadow"><i
+-                                        class="fas fa-microscope me-2"></i>Analyze</button>
++                                        class="fas fa-microscope me-2"></i>분석 시작</button>
+                             </div>
+                         </div>
+                     </div>
